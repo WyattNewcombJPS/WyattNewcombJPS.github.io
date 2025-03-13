@@ -65,36 +65,40 @@
 			/////////////////// YOUR CODE BELOW HERE /////////////////////////
 			//////////////////////////////////////////////////////////////////
 
-			// TODO 2 - Variable declarations 
+        // Variable declarations
+        var positionX = 0; // Tracks the box's x-position
+        var points = 0; // Tracks the score
+        var speed = 10; // Tracks the box's speed
 
+        // The update function - moves the box
+        function update() {
+            positionX = positionX + speed; // Increment positionX by speed
+            moveBoxTo(positionX); // Move box based on positionX
 
+            // TODO 6: Bounce off the right side
+            if (positionX > boardWidth) {
+                speed *= -1; // Reverse direction
+            }
 
-			/* 
-			This Function will be called 20 times/second. Each time it is called,
-			it should move the Box to a new location. If the box drifts off the screen
-			turn it around! 
-			*/
-			function update() {
+            // TODO 7: Bounce off the left side
+            if (positionX < 0) {
+                speed *= -1; // Reverse direction
+            }
+        }
 
+        // The handleBoxClick function - resets position, updates score, and fixes speed bug
+        function handleBoxClick() {
+            positionX = 0; // Reset the position
+            points++; // Increment points by 1
 
-			};
+            // TODO 8: Calculate speed based on points using the linear formula
+            speed = 3 * points + 10;
 
-			/* 
-			This Function will be called each time the box is clicked. Each time it is called,
-			it should increase the points total, increase the speed, and move the box to
-			the left side of the screen.
-			*/
-			function handleBoxClick() {
+            changeBoxText(points); // Update the box text to show current score
+        }
 
-
-			};
-
-
-
-
-
-		})();
-	</script>
+    })();
+</script>
 </body>
 
 </html>
